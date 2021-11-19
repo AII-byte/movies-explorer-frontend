@@ -1,0 +1,139 @@
+.about-project{
+  margin: 0 18px;
+  padding: 70px 0 105px 0;
+  box-sizing: border-box;
+}
+
+.table__about-project{
+  margin: 60px auto 0 auto;
+}
+
+.table__about-project-list{
+  margin-bottom: 56px;
+}
+
+.table__about-project-list:last-child{
+  margin-bottom: 0;
+}
+
+.table__heading{
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  margin: 0 auto 16px auto;
+}
+
+.table__text{
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16px;
+  margin: 0 auto;
+}
+
+.timeline{
+  margin-top: 49px;
+  display: grid;
+  grid-template-columns: minmax(100px, 2fr) 8fr;
+  grid-template-rows: 35px;
+  box-sizing: border-box;
+}
+
+.timeline__first{
+  box-sizing: border-box;
+}
+
+.timeline__second{
+  box-sizing: border-box;
+}
+
+.timeline__info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #F2f2f2;
+  font-size: 11px;
+  line-height: 13px;
+  font-weight: 400;
+  min-height: 35px;
+  box-sizing: border-box;
+}
+
+.timeline__legend{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  line-height: 13px;
+  font-weight: 400;
+  color: #a0a0a0;
+}
+
+.timeline__info_choose{
+ background: #2BE080;
+}
+
+
+@media screen and (min-width: 768px){
+  .about-project{
+    margin: 0 50px;
+    padding-top: 90px;
+  }
+
+  .table__about-project{
+    display: grid;
+    grid-template-columns: minmax(319px, 363px) minmax(319px, 354px);
+    margin: 70px auto 0 auto;
+  }
+
+  .table__heading{
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.04em;
+    margin: 0 auto 22px auto;
+  }
+
+  .table__about-project-list{
+    margin-right: 30px;
+  }
+
+  .table__about-project-list:last-child{
+    margin-right: 0;
+  }
+
+  .table__text{
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0 auto;
+  }
+
+  .timeline{
+    margin-top: 23px;
+    margin-bottom: 90px;
+  }
+
+  .timeline__info{
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .timeline__legend{
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+@media screen and (min-width: 827px){
+  .table__about-project{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  .about-project{
+    margin: 0 70px;
+  }
+}

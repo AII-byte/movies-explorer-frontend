@@ -1,0 +1,135 @@
+.navigation{
+  visibility: hidden;
+  position: fixed;
+  opacity: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  transition: opacity 1s ease-in-out;
+  z-index: 10;
+}
+
+.navigation__list{
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  right: 0vh;
+  z-index: 20;
+}
+
+.navigation__list-item{
+  margin-bottom: 24px;
+}
+
+.navigation__list-item:nth-last-of-type(2){
+  margin-bottom: 0;
+}
+
+.navigation__list-item:last-of-type{
+  padding-top: 200px;
+  padding-bottom: 48px;
+  margin-bottom: 0;
+}
+
+.navigation__link{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #000000;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 500;
+  padding-bottom: 7px;
+}
+
+.navigation__link_account{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #000000;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+.navigation__link_active{
+  border-bottom: 2px solid #000000;
+}
+
+.navigation__account{
+  background: #f9f9f9;
+  padding: 9px 9px;
+  margin-left: 13px;
+  border-radius: 6px;
+}
+
+@media screen and (min-width: 768px){
+  .navigation__list{
+    min-width: 520px;
+  }
+}
+
+@media screen and (min-width: 1280px){
+  .navigation{
+    display: flex;
+    position: static;
+    visibility: visible;
+  }
+
+  .navigation__list{
+    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #fff;
+    min-width: auto;
+    min-height: auto;
+  }
+
+  .navigation__list-item{
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
+
+  .navigation__list-item:first-child{
+    display: none;
+  }
+
+  .navigation__list-item:nth-last-of-type(2){
+    margin-right: 50px;
+  }
+
+  .navigation__link_active{
+    border-bottom: none;
+    font-weight: 500;
+  }
+
+  .navigation__list-item:last-of-type{
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+  }
+
+  .navigation__link{
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+    padding-bottom: 0;
+  }
+}

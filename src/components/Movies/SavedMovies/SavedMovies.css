@@ -1,0 +1,14 @@
+.movies-card__delete{
+  border: none;
+  flex: none;
+  padding: 0;
+  margin: 0;
+  width: 14px;
+  height: 12px;
+  -webkit-mask: url('../../../images/delete.svg') no-repeat;
+  mask: url('../../../images/delete.svg') no-repeat;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  background-color: #000000;
+  cursor: pointer;
+}

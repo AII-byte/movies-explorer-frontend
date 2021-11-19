@@ -1,0 +1,25 @@
+
+
+
+.modal__item{
+  margin-bottom: 24px;
+}
+
+.modal__item:nth-last-of-type(2){
+  margin-bottom: 0;
+}
+
+.modal__item:last-of-type{
+  padding-top: 444px;
+  padding-bottom: 48px;
+  margin-bottom: 0;
+}
+
+.modal__link{
+  text-decoration: none;
+  color: #000000;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 500;
+  padding-bottom: 7px;
+}
