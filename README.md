@@ -4,3 +4,5 @@
 Чтобы проверить функциональность burger menu, необходимо закоммитить код ``` <nav></nav> ``` выше и раскоммитить ``` <BurgerMenu />```
 
 [ссылка на макет:](https://disk.yandex.ru/d/A3NTtq53ucUboQ)
+
+https://aii.nomoredomains.work
