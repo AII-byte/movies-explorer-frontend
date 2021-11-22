@@ -9,7 +9,7 @@
 }
 
 .burger__icon{
-  background: #000000;
+  background-color: #000000;
   display: block;
   height: 3px;
   width: 28px;
@@ -19,39 +19,39 @@
   z-index: 20;
 }
 
-.burger__icon:before{
-  background: #000000;
+.burger__icon:before,
+.burger__icon:after{
+  background: inherit;
   content: "";
   display: block;
   height: 100%;
   width: 100%;
   position: absolute;
   transition: all .2s ease-out;
+  cursor: pointer;
+  top: 7px;
+}
+
+.burger__icon:before{
   top: 7px;
 }
 
 .burger__icon:after{
-  background: #000000;
-  content: "";
-  display: block;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  transition: all .2s ease-out;
   top: -7px;
 }
 
 .burger__btn:checked ~ .burger__container .burger__icon{
-  background: transparent;
+  transform: rotate(45deg);
+  background: none;
 }
 
 .burger__btn:checked ~ .burger__container .burger__icon:before{
-  transform: rotate(-45deg);
+  transform: rotate(0);
   top: 0;
 }
 
 .burger__btn:checked ~ .burger__container .burger__icon:after{
-  transform: rotate(45deg);
+  transform: rotate(-90deg);
   top: 0;
 }
 
@@ -68,4 +68,5 @@
   .burger__container{
     display: none;
   }
+
 }

@@ -1,4 +1,6 @@
 import Header from '../../Header/Header';
+import SearchForm from '../SearchForm/SearchForm'
+import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 import Footer from '../../Footer/Footer';
 
 import poster from '../../../images/poster.jpg'
@@ -7,6 +9,8 @@ function SavedMovies() {
   return(
     <>
     <Header />
+    <SearchForm />
+    <FilterCheckbox />
     <ul className="movies-card-list">
     <li className="movies-card">
       <div className="movies-card__footer">
