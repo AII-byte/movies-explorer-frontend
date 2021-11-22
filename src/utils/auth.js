@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.aii.nomoredomains.work';
+export const BASE_URL = 'http://localhost:3001';
 
 const checkRequestResult = (res) => {
   if (res.ok) {
@@ -32,7 +32,7 @@ export const authorize = (email, password) => {
 }
 
 export const getContent = (token) => {
-  return fetch(`${BASE_URL}/me`, {
+  return fetch(`${BASE_URL}/profile`, {
     method: 'GET',
     credentials:'include',
     headers: {

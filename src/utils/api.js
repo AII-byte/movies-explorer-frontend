@@ -9,7 +9,7 @@ class Api {
   }
 
   getUserData() {
-    return fetch (`${this._baseUrl}/me`, {
+    return fetch (`${this._baseUrl}/profile`, {
       method:'GET',
       headers: this._header,
       credentials:'include',
@@ -26,21 +26,21 @@ class Api {
     .then(res => this._getResponseData(res))
   }
 
-  editUserBio({name: newName, about: newAbout}){
-    return fetch (`${this._baseUrl}/me`, {
+  editUserBio({name: newName, email: newEmail}){
+    return fetch (`${this._baseUrl}/profile`, {
       method: 'PATCH',
       headers: this._header,
       credentials:'include',
       body: JSON.stringify({
         name: newName,
-        about: newAbout
+        email: newEmail
       })
     })
     .then(res => this._getResponseData(res))
   }
 
   addNewCard({name: newName, link: newLink}) {
-    return fetch (`${this._baseUrl}/cards`, {
+    return fetch (`${this._baseUrl}/movies`, {
       method: 'POST',
       headers: this._header,
       credentials:'include',
@@ -52,16 +52,16 @@ class Api {
     .then(res => this._getResponseData(res))
   }
 
-  changeLikeCardStatus(cardId, isLiked){
+  changeLikeMoviesStatus(movieId, isLiked){
     if (isLiked) {
-      return fetch (`${this._baseUrl}/cards/${cardId}/likes`, {
+      return fetch (`${this._baseUrl}/movies/${movieId}/likes`, {
         method: 'DELETE',
         header: this._header,
         credentials:'include'
       })
       .then(res => this._getResponseData(res))
     } else {
-      return fetch (`${this._baseUrl}/cards/${cardId}/likes`, {
+      return fetch (`${this._baseUrl}/movies/${movieId}/likes`, {
         method: 'PUT',
         header: this._header,
         credentials:'include'
@@ -70,8 +70,8 @@ class Api {
     }
   }
 
-  deleteCard(cardId){
-    return fetch (`${this._baseUrl}/cards/${cardId}`, {
+  deleteCard(movieId){
+    return fetch (`${this._baseUrl}/movies/${movieId}`, {
       method: 'DELETE',
       headers: this._header,
       credentials:'include'
@@ -88,7 +88,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://api.aii.nomoredomains.work',
+  baseUrl: 'http://localhost:3001',
   header: {
     'Content-Type': 'application/json'
   }
