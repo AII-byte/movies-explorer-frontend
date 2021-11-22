@@ -1,0 +1,80 @@
+.form{
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.form__field{
+  display: flex;
+  flex-direction: column;
+  border: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.form__header{
+  padding-bottom: 80px;
+  margin: 0 auto;
+}
+
+.form__header-style{
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 500;
+}
+
+.form__label-style{
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 400;
+  color: #a0a0a0;
+  margin-bottom: 10px;
+}
+
+.form__input{
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  background-color: #f9f9f9;
+  min-width: 260px;
+  min-height: 46px;
+  box-sizing: border-box;
+  padding: 0 15px;
+}
+
+.form__user-email{
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+.form__user-password{
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+.form__buttons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px){
+  .form__input{
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background-color: #f9f9f9;
+    min-width: 396px;
+    padding: 0 15px;
+  }
+
+  .form__header{
+    margin: 0;
+    padding-bottom: 40px;
+  }
+
+}
