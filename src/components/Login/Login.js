@@ -3,7 +3,8 @@ import React from 'react';
 import { Link }  from 'react-router-dom';
 import register__logo from '../../images/header__logo.svg'
 
-function Login({authorization}) {
+function Login({ authorization }) {
+
   const [valueEmail, setValueEmail] = React.useState('');
   const [valuePassword, setValuePassword] = React.useState('');
 
@@ -36,17 +37,37 @@ function Login({authorization}) {
         <fieldset className="form__field">
           <legend className="form__header form__header-style">Рады видеть!</legend>
 
-          <label className="form__label form__label-style">E-mail</label>
-          <input className="form__input form__user-email" type="email" value={valueEmail} autoComplete="off" required onChange={handleEmailChange}></input>
+          <label className="form__label form__label-style" htmlFor="email">E-mail</label>
+          <input
+            className="form__input form__user-email"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="email"
+            value={valueEmail}
+            autoComplete="off"
+            required
+            onChange={handleEmailChange}
+          />
           <span className="error section" id="user-email-error">и тут</span>
 
-          <label className="form__label form__label-style">Пароль</label>
-          <input className="form__input form__user-password" type="password" value={valuePassword} autoComplete="off" required onChange={handlePasswordChange}></input>
+          <label className="form__label form__label-style" htmlFor="password">Пароль</label>
+          <input
+            className="form__input form__user-password"
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Пароль"
+            value={valuePassword}
+            autoComplete="off"
+            required
+            onChange={handlePasswordChange}
+          />
           <span className="error section" id="user-password-error">и вот здесь</span>
 
         </fieldset>
         <div className="form__buttons">
-          <button className="button button__login button__text">Войти</button>
+          <button className="button button__login button__text" type="submit">Войти</button>
           <span className="button__login login__text">Ещё не зарегистрированы?&nbsp;
             <Link to="/signup" className="button__link">Регистрация</Link>
           </span>

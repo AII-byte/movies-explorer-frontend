@@ -32,7 +32,7 @@ export const authorize = (email, password) => {
 }
 
 export const getContent = (token) => {
-  return fetch(`${BASE_URL}/profile`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     credentials:'include',
     headers: {

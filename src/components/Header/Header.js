@@ -1,23 +1,21 @@
 import React from "react"
 import { useLocation, Link }  from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import header__logo from '../../images/header__logo.svg'
-import BurgerMenu from '../Header/BurgerMenu/BurgerMenu'
+import RegLogMenu from "./RegLogMenu/RegLogMenu";
+import BurgerMenu from './BurgerMenu/BurgerMenu'
+import CurrentUserContext from '../../contexts/CurrentUserContext'
 
-function Header({loggedIn, email, handleSignOut}){
-  const { pathname } = useLocation();
-  // const text = `${pathname === '/sign-in' ? 'Регистрация' : 'Войти'}`;
-  // const linkRoute = `${pathname === '/sign-in' ? '/sign-up' : '/sign-in'}`;
+function Header(){
   const location = useLocation();
+  const currentUser = useContext(CurrentUserContext);
   const [color, setColor] = useState('');
-  const [textColor, setTextColor] = useState('');
 
   useEffect(() => {
     if (location.pathname === '/') {
-        setColor('#073042');
-        setTextColor('#FFFFFF');
+      setColor('#073042');
     } else {
-        setColor('#FFFFFF');
+      setColor('#FFFFFF');
     }
 }, [location.pathname, color]);
 
@@ -30,26 +28,11 @@ function Header({loggedIn, email, handleSignOut}){
           src={header__logo}
         />
       </Link>
-      {/* <nav className="header__button">
-        <button className="button header__button_register">
-          <Link
-              to="/signup"
-              style={{ color: textColor }}
-              className="header__button-text header__button-text_color button "
-          >
-          Регистрация
-          </Link>
-        </button>
-        <button className="button header__button_login header__button-text">
-          <Link
-              to="/signin"
-              className="header__button_login header__button-text"
-          >
-          Войти
-          </Link>
-        </button>
-      </nav> */}
-      <BurgerMenu />
+      {currentUser ? (
+        <BurgerMenu />
+      ) : (
+        <RegLogMenu />
+      )}
     </header>
   )
 }

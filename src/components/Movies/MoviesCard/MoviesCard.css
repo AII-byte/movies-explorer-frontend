@@ -55,7 +55,7 @@
   mask: url('../../../images/like.svg') no-repeat;
   -webkit-mask-size: cover;
   mask-size: cover;
-  background-color: #FF3055;
+  background-color: #E8E8E8;
   cursor: pointer;
 }
 
@@ -64,6 +64,7 @@
   height: 12px;
   -webkit-mask: url('../../../images/like_active.svg') no-repeat;
   mask: url('../../../images/like_active.svg') no-repeat;
+  background-color: #FF3055;
 }
 
 .movies-card__like_brightness{

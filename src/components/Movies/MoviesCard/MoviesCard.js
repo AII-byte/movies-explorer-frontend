@@ -1,37 +1,17 @@
-import poster from '../../../images/poster.jpg'
+import React from "react";
 
-function MoviesCard() {
+function MoviesCard({card}) {
   return(
     <>
     <li className="movies-card">
       <div className="movies-card__footer">
         <div className="movies-card__info">
-          <h2 className="movies-card__title">33 слова о дизайне</h2>
-          <p className="movies-card__lenght">1ч 42м</p>
+          <h2 className="movies-card__title">{card}</h2>
+          <p className="movies-card__lenght">1h 25m</p>
         </div>
-        <button type="button" className="movies-card__like movies-card__like_active"></button>
+        <button type="button" className="movies-card__like"></button>
       </div>
-      <img src={poster} alt="Постер фильма" className="movies-card__image" />
-    </li>
-    <li className="movies-card">
-      <div className="movies-card__footer">
-        <div className="movies-card__info">
-          <h2 className="movies-card__title">33 слова о дизайне</h2>
-          <p className="movies-card__lenght">1ч 42м</p>
-        </div>
-        <button type="button" className="movies-card__like movies-card__like_active"></button>
-      </div>
-      <img src={poster} alt="Постер фильма" className="movies-card__image" />
-    </li>
-    <li className="movies-card">
-      <div className="movies-card__footer">
-        <div className="movies-card__info">
-          <h2 className="movies-card__title">33 слова о дизайне</h2>
-          <p className="movies-card__lenght">1ч 42м</p>
-        </div>
-        <button type="button" className="movies-card__like movies-card__like_active"></button>
-      </div>
-      <img src={poster} alt="Постер фильма" className="movies-card__image" />
+      <img src={`https://api.nomoreparties.co${card}`} alt={`Постер фильма ${card}`} className="movies-card__image" />
     </li>
     </>
   )

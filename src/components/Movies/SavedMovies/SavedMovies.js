@@ -1,14 +1,11 @@
-import Header from '../../Header/Header';
 import SearchForm from '../SearchForm/SearchForm'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
-import Footer from '../../Footer/Footer';
 
 import poster from '../../../images/poster.jpg'
 
 function SavedMovies() {
   return(
     <>
-    <Header />
     <SearchForm />
     <FilterCheckbox />
     <ul className="movies-card-list">
@@ -43,7 +40,6 @@ function SavedMovies() {
       <img src={poster} alt="Постер фильма" className="movies-card__image" />
     </li>
     </ul>
-    <Footer />
     </>
   )
 }

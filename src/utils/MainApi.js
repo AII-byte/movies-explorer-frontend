@@ -1,3 +1,10 @@
+const checkRequestResult = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error ${res.status}`);
+}
+
 class Api {
   constructor({baseUrl, header}){
     this._baseUrl = baseUrl;
@@ -8,8 +15,55 @@ class Api {
     return Promise.all([this.getUserData(), this.getMovies()])
   }
 
+  register = (name, email, password) => {
+    return fetch(`${this._baseUrl}/signup`, {
+      method: 'POST',
+      credentials:'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email, password })
+    })
+    .then(checkRequestResult)
+  };
+
+  login = (email, password) => {
+    return fetch(`${this._baseUrl}/signin`, {
+      method: 'POST',
+      credentials:'include',
+      headers: { 'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password })
+    })
+    .then(checkRequestResult)
+    .then((data) => data)
+  }
+
+  logout = () => {
+    return fetch(`${this._baseUrl}/signout`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(this._checkResponse)
+  }
+
+  getContent = (token) => {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'GET',
+      credentials:'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+  })
+    .then(checkRequestResult)
+    .then((data) => data)
+  }
+
   getUserData() {
-    return fetch (`${this._baseUrl}/profile`, {
+    return fetch (`${this._baseUrl}/users/me`, {
       method:'GET',
       headers: this._header,
       credentials:'include',
@@ -17,17 +71,8 @@ class Api {
     .then(res => this._getResponseData(res))
   }
 
-  getMovies() {
-    return fetch (`${this._baseUrl}/movies`, {
-      method:'GET',
-      headers: this._header,
-      credentials:'include'
-    })
-    .then(res => this._getResponseData(res))
-  }
-
   editUserBio({name: newName, email: newEmail}){
-    return fetch (`${this._baseUrl}/profile`, {
+    return fetch (`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._header,
       credentials:'include',
@@ -39,7 +84,16 @@ class Api {
     .then(res => this._getResponseData(res))
   }
 
-  addNewCard({name: newName, link: newLink}) {
+  getSavedMovies() {
+    return fetch (`${this._baseUrl}/movies`, {
+      method:'GET',
+      headers: this._header,
+      credentials:'include'
+    })
+    .then(res => this._getResponseData(res))
+  }
+
+  addNewMovie({name: newName, link: newLink}) {
     return fetch (`${this._baseUrl}/movies`, {
       method: 'POST',
       headers: this._header,
@@ -70,7 +124,7 @@ class Api {
     }
   }
 
-  deleteCard(movieId){
+  deleteMovie(movieId){
     return fetch (`${this._baseUrl}/movies/${movieId}`, {
       method: 'DELETE',
       headers: this._header,
@@ -87,11 +141,11 @@ class Api {
     }
 }
 
-const api = new Api({
+const MainApi = new Api({
   baseUrl: 'http://localhost:3001',
   header: {
     'Content-Type': 'application/json'
   }
 });
 
-export default api;
+export default MainApi;

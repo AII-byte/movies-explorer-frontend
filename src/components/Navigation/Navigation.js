@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, NavLink }  from 'react-router-dom';
 import account_logo from '../../images/account__icon.svg'
 
-function Navigation() {
+function Navigation({onClose}) {
   const location = useLocation();
   const [color, setColor] = useState('');
   const [textColor, setTextColor] = useState('');
@@ -22,22 +22,47 @@ function Navigation() {
     <div className="navigation">
     <ul className="navigation__list" style={{ backgroundColor: color }}>
       <li className="navigation__list-item" >
-        <NavLink to="/" className="navigation__link" style={{ color: textColor }}>
+        <NavLink
+          exact
+          to="/"
+          className="navigation__link"
+          activeClassName="navigation__link_active"
+          style={{ color: textColor }}
+          onClick={onClose}
+        >
           Главная
         </NavLink>
       </li>
       <li className="navigation__list-item">
-        <NavLink to="/movies" className="navigation__link" style={{ color: textColor }}>
+        <NavLink
+          to="/movies"
+          className="navigation__link"
+          activeClassName="navigation__link_active"
+          style={{ color: textColor }}
+          onClick={onClose}
+        >
           Фильмы
         </NavLink>
       </li>
       <li className="navigation__list-item">
-        <NavLink to="/saved-movies" className="navigation__link modal__link_active" style={{ color: textColor }}>
+        <NavLink
+          to="/saved-movies"
+          className="navigation__link modal__link_active"
+          activeClassName="navigation__link_active"
+          style={{ color: textColor }}
+          onClick={onClose}
+        >
           Сохранённые фильмы
         </NavLink>
       </li>
       <li className="navigation__list-item">
-        <NavLink to="/me" className="navigation__link_account" style={{ color: textColor }}>
+        <NavLink
+          to="/users/me"
+          className="navigation__link_account"
+          activeClassName="navigation__link_active"
+          style={{ color: textColor }}
+          onClick={onClose}
+        >
           Аккаунт
           <img
             className="navigation__account"
@@ -46,8 +71,8 @@ function Navigation() {
           />
         </NavLink>
       </li>
-      </ul>
-      </div>
+    </ul>
+    </div>
   );
 
 }
