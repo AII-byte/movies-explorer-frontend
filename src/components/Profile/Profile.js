@@ -3,8 +3,8 @@ import { useContext, useState } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function Profile({onUpdateUser, logout}) {
-  const [name, setName] = React.useState();
-  const [email, setEmail] = React.useState();
+  const [name, setName] = useState(false);
+  const [email, setEmail] = useState(false);
 
   const currentUser = useContext(CurrentUserContext);
 
@@ -44,7 +44,7 @@ function Profile({onUpdateUser, logout}) {
               autoComplete="off"
               required
               onChange={handleNameInputChange}
-              value={currentUser.name || ''}
+              value={name || ''}
             />
           </div>
           <div className="profile__input-line">
@@ -55,7 +55,7 @@ function Profile({onUpdateUser, logout}) {
               autoComplete="off"
               required
               onChange={handleEmailInputChange}
-              value={currentUser.email || ''}
+              value={email || ''}
             />
           </div>
         </fieldset>

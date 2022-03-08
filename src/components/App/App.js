@@ -56,7 +56,12 @@ function App() {
   function handleUpdateUser(name, email) {
     mainApi.editUserBio(name, email)
       .then(res => {
-        setCurrentUser(res);
+        localStorage.setItem('currentUser', JSON.stringify(res));
+        setCurrentUser({
+          ...currentUser,
+          email: res.email,
+          name: res.name,
+      });
       })
     .catch(err => console.log(err))
   }
