@@ -8,7 +8,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm({ handleSearch, setPreloader, setIsChecked, isLoading, toggleSubmit, isSubmitted, unToggleSubmit }) {
 
-  const { values, errors, isValid, handleChange } =  useFormValidation({});
+  const { values, handleChange } =  useFormValidation({});
 
 const [keyword, setKeyword] = useState("");
 const [isShortMovies, setIsShortMovies] = useState(false);
