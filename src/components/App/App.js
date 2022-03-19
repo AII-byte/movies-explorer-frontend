@@ -4,7 +4,7 @@ import mainApi from "../../utils/MainApi";
 import moviesApi from '../../utils/MoviesApi';
 
 import CurrentUserContext from '../../contexts/currentUserContext';
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer';
@@ -222,6 +222,7 @@ function addMovie(movie) {
             setSavedMovies([...savedMovies, newSavedMovie]);
             console.log(`addMovie ${res.message}`);
         })
+        setErrorState(true)
         .catch((err) => console.log(err));
 }
 
