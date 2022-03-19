@@ -1,3 +1,4 @@
+import React from 'react'
 import profilePhoto from '../../../images/profilePhoto.jpg'
 
 function AboutMe() {
