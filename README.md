@@ -1,8 +1,8 @@
 # movies-explorer-frontend
 
 [ссылка на макет](https://disk.yandex.ru/d/A3NTtq53ucUboQ)
-[ссылка на бекенд] https://api.aii.nomoredomains.work
-[ссылка на фронтенд] https://aii.nomoredomains.work/
+[ссылка на бекенд](https://api.aii.nomoredomains.work)
+[ссылка на фронтенд](https://aii.nomoredomains.work/)
 
 
 
