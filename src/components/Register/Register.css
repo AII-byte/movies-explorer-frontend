@@ -28,6 +28,10 @@
   box-sizing: border-box;
 }
 
+.button__register_inactive{
+  background-color: gray;
+}
+
 @media screen and (min-width: 768px){
   .register{
     align-items: flex-start;

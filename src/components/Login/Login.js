@@ -1,27 +1,15 @@
 import React from 'react';
-
 import { Link }  from 'react-router-dom';
-import register__logo from '../../images/header__logo.svg'
+import register__logo from '../../images/header__logo.svg';
+import useFormValidation from '../../utils/validation';
 
-function Login({ authorization }) {
+function Login({ onLogin, responseMessage, isLoading }) {
 
-  const [valueEmail, setValueEmail] = React.useState('');
-  const [valuePassword, setValuePassword] = React.useState('');
+  const { values, errors, isValid, handleChange } = useFormValidation({});
 
-  function handleEmailChange(e) {
-    setValueEmail(e.target.value);
-  }
-
-  function handlePasswordChange(e) {
-    setValuePassword(e.target.value);
-  }
-
-  function handleSubmit(e){
-    e.preventDefault()
-    const email = valueEmail;
-    const password = valuePassword;
-
-    authorization(email, password);
+  function handleOnSubmit(evt) {
+    evt.preventDefault();
+    onLogin(values.email, values.password);
   }
 
   return (
@@ -33,41 +21,51 @@ function Login({ authorization }) {
           src={register__logo}
         />
       </Link>
-      <form className="form section form__login login__form" onSubmit={handleSubmit} autoComplete="on">
+      <form className="form section form__login login__form" onSubmit={handleOnSubmit} autoComplete="on">
         <fieldset className="form__field">
           <legend className="form__header form__header-style">Рады видеть!</legend>
-
           <label className="form__label form__label-style" htmlFor="email">E-mail</label>
           <input
             className="form__input form__user-email"
             type="email"
-            id="email"
             name="email"
             placeholder="email"
-            value={valueEmail}
+            value={values.email || ''}
             autoComplete="off"
             required
-            onChange={handleEmailChange}
+            onChange={handleChange}
+            pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[a-z]{2,})\b"
           />
-          <span className="error section" id="user-email-error">и тут</span>
+          <span className="section error error__input" id="user-email-error">{errors.email || ''}</span>
 
           <label className="form__label form__label-style" htmlFor="password">Пароль</label>
           <input
             className="form__input form__user-password"
             type="password"
-            id="password"
             name="password"
             placeholder="Пароль"
-            value={valuePassword}
+            value={values.password || ''}
             autoComplete="off"
             required
-            onChange={handlePasswordChange}
+            onChange={handleChange}
+            minLength={5}
           />
-          <span className="error section" id="user-password-error">и вот здесь</span>
+          <span className="section error error__input" id="user-password-error">{errors.password || ''}</span>
 
         </fieldset>
+        <span className="section error error__form">{responseMessage}</span>
         <div className="form__buttons">
-          <button className="button button__login button__text" type="submit">Войти</button>
+          <button
+            className={`button button__login button__text ${
+              (!isValid) &&
+              'button__register_inactive'
+            }`}
+            type="submit"
+            disabled={(!isValid) && true}
+          >
+            {isLoading ? 'Вход....' : 'Войти'}
+          </button>
+
           <span className="button__login login__text">Ещё не зарегистрированы?&nbsp;
             <Link to="/signup" className="button__link">Регистрация</Link>
           </span>

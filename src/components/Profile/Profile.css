@@ -83,6 +83,15 @@
   margin-bottom: 16px;
 }
 
+.profile__edit-btn{
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.profile__edit-btn_disable{
+  color: #A0A0A0;
+}
+
 .profile__logout-btn{
   font-weight: 500;
   color: #FF3055;

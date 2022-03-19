@@ -2,6 +2,7 @@
   padding: 40px 0 0 0;
   margin: 0 10px;
   list-style: none;
+  min-height: 562px;
 }
 
 @media screen and (min-width: 768px){

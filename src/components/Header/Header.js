@@ -1,14 +1,12 @@
 import React from "react"
 import { useLocation, Link }  from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import header__logo from '../../images/header__logo.svg'
 import RegLogMenu from "./RegLogMenu/RegLogMenu";
 import BurgerMenu from './BurgerMenu/BurgerMenu'
-import CurrentUserContext from '../../contexts/CurrentUserContext'
 
-function Header(){
+function Header({ loggedIn }){
   const location = useLocation();
-  const currentUser = useContext(CurrentUserContext);
   const [color, setColor] = useState('');
 
   useEffect(() => {
@@ -28,7 +26,7 @@ function Header(){
           src={header__logo}
         />
       </Link>
-      {currentUser ? (
+      {loggedIn ? (
         <BurgerMenu />
       ) : (
         <RegLogMenu />

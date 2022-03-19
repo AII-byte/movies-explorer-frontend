@@ -1,45 +1,59 @@
+import React, { useState, useEffect } from 'react';
 import SearchForm from '../SearchForm/SearchForm'
-import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import NothingFound from '../../NothingFound/NothingFound';
+import messages from '../../../utils/messages';
 
-import poster from '../../../images/poster.jpg'
+function SavedMovies({
+  loggedIn,
+  isLoading,
+  onSubmitSearch,
+  movies,
+  setPreloader,
+  moviesSearchResponse,
+  toggleMovieLike,
+  checkLikeStatus,
+  sortShortMovies,
+  toggleSubmit,
+  isSubmitted,
+  unToggleSubmit,
+  errorState
+ }) {
+  const [shortMovies, setShortMovies] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
 
-function SavedMovies() {
+  useEffect(() => {
+      if (isChecked) {
+          setShortMovies(sortShortMovies(movies));
+      }
+  }, [isChecked]);
+
   return(
     <>
-    <SearchForm />
-    <FilterCheckbox />
-    <ul className="movies-card-list">
-    <li className="movies-card">
-      <div className="movies-card__footer">
-        <div className="movies-card__info">
-          <h2 className="movies-card__title">33 слова о дизайне</h2>
-          <p className="movies-card__lenght">1ч 42м</p>
-        </div>
-        <button type="button" className="movies-card__delete"></button>
-      </div>
-      <img src={poster} alt="Постер фильма" className="movies-card__image" />
-    </li>
-    <li className="movies-card">
-      <div className="movies-card__footer">
-        <div className="movies-card__info">
-          <h2 className="movies-card__title">33 слова о дизайне</h2>
-          <p className="movies-card__lenght">1ч 42м</p>
-        </div>
-        <button type="button" className="movies-card__delete"></button>
-      </div>
-      <img src={poster} alt="Постер фильма" className="movies-card__image" />
-    </li>
-    <li className="movies-card">
-      <div className="movies-card__footer">
-        <div className="movies-card__info">
-          <h2 className="movies-card__title">33 слова о дизайне</h2>
-          <p className="movies-card__lenght">1ч 42м</p>
-        </div>
-        <button type="button" className="movies-card__delete"></button>
-      </div>
-      <img src={poster} alt="Постер фильма" className="movies-card__image" />
-    </li>
-    </ul>
+
+    <SearchForm
+      handleSearch={onSubmitSearch}
+      setPreloader={setPreloader}
+      setIsChecked={setIsChecked}
+      isLoading={isLoading}
+      isSubmitted={isSubmitted}
+      toggleSubmit={toggleSubmit}
+      unToggleSubmit={unToggleSubmit}
+    />
+    {!movies || movies.length === 0 ? (
+      <NothingFound
+        message={messages.movieNotSaved}
+        errorState={errorState}
+      />
+      ) : (
+      <MoviesCardList
+        movies={isChecked ? shortMovies : movies}
+        toggleMovieLike={toggleMovieLike}
+        checkLikeStatus={checkLikeStatus}
+        isSavedPage={true}
+      />
+      )
+      }
     </>
   )
 }

@@ -1,30 +1,16 @@
 import React from 'react';
+import useFormValidation from '../../utils/validation';
 import { Link }  from 'react-router-dom';
 import register__logo from '../../images/header__logo.svg'
 
-function Register({registration}) {
-  const [valueEmail, setValueEmail] = React.useState('');
-  const [valuePassword, setValuePassword] = React.useState('');
-  const [valueUserName, setValueUserName] = React.useState('');
+function Register({ onRegister, responseMessage, isLoading }) {
 
-  function handlUserNameChange(e) {
-    setValueUserName(e.target.value);
-  }
-
-  function handleEmailChange(e) {
-    setValueEmail(e.target.value);
-  }
-
-  function handlePasswordChange(e) {
-    setValuePassword(e.target.value);
-  }
+  const { values, handleChange, errors, isValid, resetForm } = useFormValidation({});
 
   function handleSubmit(e){
-    e.preventDefault()
-    const name = valueUserName;
-    const email = valueEmail;
-    const password = valuePassword;
-    registration(name, email, password)
+    e.preventDefault();
+    onRegister(values);
+    resetForm();
   }
 
   return (
@@ -39,22 +25,59 @@ function Register({registration}) {
       <form className="form section form__register register__form" onSubmit={handleSubmit} autoComplete="on">
         <fieldset className="form__field">
           <legend className="form__header form__header-style">Добро пожаловать!</legend>
-
           <label className="form__label form__label-style">Имя</label>
-          <input className="form__input form__user-name" type="text" value={valueUserName} autoComplete="off" required onChange={handlUserNameChange}></input>
-          <span className="error section" id="user-name-error">и тут</span>
-
+          <input
+            className="form__input form__user-name"
+            type="text"
+            id="name"
+            name="name"
+            value={values.name || ""}
+            autoComplete="off"
+            required
+            onChange={handleChange}
+            minLength={2}
+            maxLength={30}
+          />
+          <span className="section error error__input" id="user-name-error">{errors.name || ''}</span>
           <label className="form__label form__label-style">E-mail</label>
-          <input className="form__input form__user-email" type="email" value={valueEmail} autoComplete="off" required onChange={handleEmailChange}></input>
-          <span className="error section" id="user-email-error">и тут</span>
-
+          <input
+            className="form__input form__user-email"
+            type="email"
+            id="email"
+            name="email"
+            value={values.email || ''}
+            autoComplete="off"
+            required
+            onChange={handleChange}
+            pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[a-z]{2,})\b"
+          />
+          <span className="section error error__input" id="user-email-error">{errors.email || ''}</span>
           <label className="form__label form__label-style">Пароль</label>
-          <input className="form__input form__user-password" type="password" value={valuePassword} autoComplete="off" required onChange={handlePasswordChange}></input>
-          <span className="error section" id="user-password-error">и вот здесь</span>
-
+          <input
+            className="form__input form__user-password"
+            type="password"
+            id="password"
+            name="password"
+            value={values.password || ''}
+            autoComplete="off"
+            required
+            onChange={handleChange}
+            minLength={8}
+            />
+          <span className="section error error__input" id="user-password-error">{errors.password || ''}</span>
         </fieldset>
+        <span className="error section error__form">{responseMessage}</span>
         <div className="form__buttons">
-          <button className="button button__register button__text">Зарегистрироваться</button>
+          <button
+            className={`button button__register button__text ${
+              (!isValid || isLoading) &&
+              'button__register_inactive'
+            }`}
+            type="submit"
+            disabled={(!isValid || isLoading) && true}
+          >
+            {isLoading ? 'Регистрация....' : 'Зарегистрироваться'}
+          </button>
           <span className="button__register register__text">Уже зарегистрированы?&nbsp;
             <Link to="/signin" className="button__link">Войти</Link></span>
         </div>

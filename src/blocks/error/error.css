@@ -1,11 +1,31 @@
 .error{
-  font-size: 10px;
-  line-height: 12px;
-  font-weight: 400;
+  display: block;
   color: #FF3055;
-  margin-bottom: 2px;
 }
 
 .error:last-of-type{
   margin-bottom: 0;
+}
+
+.error__input{
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 400;
+  margin-bottom: 2px;
+  max-width: 240px;
+  min-height: 12px;
+}
+
+.error__form{
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 400;
+  margin-bottom: 2px;
+  max-width: 240px;
+}
+
+@media screen and (min-width: 768px){
+  .error{
+    max-width: 396px;
+  }
 }
