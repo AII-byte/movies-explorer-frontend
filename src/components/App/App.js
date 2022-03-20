@@ -68,19 +68,18 @@ function App() {
     mainApi.register(name, email, password)
           .then((res) => {
               if (res) {
-                  handleLogin(email, password);
-
+                handleLogin(email, password);
               }
           })
           .catch((err) => {
             console.log(err);
-              if (err === "Error 400") {
+              if (err === "400") {
                   showResMessage(messages.userIncorrectUpdateInfo);
               }
-              if (err === "Error 409") {
-                  showResMessage(messages.userIncorrectUpdateInfo);
+              if (err === "409") {
+                  showResMessage(messages.userEmailConflict);
               }
-              if (err === "Error 500") {
+              if (err === "500") {
                   showResMessage(messages.userIncorrectUpdateInfo);
               }
           });
@@ -88,25 +87,25 @@ function App() {
 
   function handleLogin(email, password) {
     mainApi.login(email, password)
-          .then((res) => {
-              if (res.token) {
-                  localStorage.setItem("jwt", res.token);
-                  setLoggedIn(true);
-                  history.push("/movies");
-              }
-          })
-          .catch((err) => {
-            console.log(`Ошибка ${err}`)
-              if (err === "Error 400") {
-                showResMessage(messages.userIncorrectUpdateInfo);
-              }
-              if (err === "Error 401") {
-                showResMessage(messages.userIncorrectUpdateInfo);
-              }
-              if (err === "Error 500") {
-                showResMessage(messages.userIncorrectUpdateInfo);
-              }
-          });
+      .then((res) => {
+          if (res.token) {
+            localStorage.setItem("jwt", res.token);
+            setLoggedIn(true);
+            history.push("/movies");
+          }
+      })
+      .catch((err) => {
+        console.log(`Ошибка ${err}`)
+          if (err === "400") {
+            showResMessage(messages.userIncorrectUpdateInfo);
+          }
+          if (err === "401") {
+            showResMessage(messages.userIncorrectUpdateInfo);
+          }
+          if (err === "500") {
+            showResMessage(messages.userIncorrectUpdateInfo);
+          }
+      });
   }
 
   function handleUpdateUser(name, email) {
@@ -117,10 +116,10 @@ function App() {
     // .catch(err => console.log(err))
           .catch((err) => {
             console.log(err);
-            if (err === "Error 400") {
+            if (err === "400") {
               showResMessage(messages.userIncorrectUpdateInfo);
             }
-            if (err === ("Error 409" || "Ошибка: 409")) {
+            if (err === ("409")) {
               showResMessage(messages.userEmailConflict);
             }
           });

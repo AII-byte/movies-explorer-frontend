@@ -12,6 +12,6 @@
     3)  Запустить бекенд: npm start
     4)  Клонировать фронтенд: git clone --branch level-3 https://github.com/AII-byte/movies-explorer-frontend.git
     5)  Установить пакет зависимостей: npm  i
-    6)  В utils/MainApi.js в конце файла раскомментировать 3000-ый порт, и закомментировать домен
-    7) 	Добаваить в package.json после "browserslist":   "proxy": "http://localhost:3000/"
+    6)  В utils/MainApi.js в конце файла раскомментировать 3001-ый порт, и закомментировать домен
+    7) 	Добавить в package.json после "browserslist":   "proxy": "http://localhost:3001/"
     8)  npm start

@@ -54,7 +54,7 @@ class Api {
     .then(res => this._getResponseData(res))
   };
 
-  editUserBio = ({ name: newName, email: newEmail }) => {
+  editUserBio = ({ name, email }) => {
     const token = localStorage.getItem('jwt');
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
@@ -64,7 +64,7 @@ class Api {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ email: newEmail, name: newName }),
+      body: JSON.stringify({ email: email, name: name }),
     })
     .then(res => this._getResponseData(res))
   };
@@ -125,8 +125,8 @@ class Api {
 }
 
 const MainApi = new Api({
-  baseUrl: 'https://api.aii.nomoredomains.work',
-  // baseUrl: 'http://localhost:3000',
+  // baseUrl: 'https://api.aii.nomoredomains.work',
+  baseUrl: 'http://localhost:3001',
   header: {
     'Content-Type': 'application/json'
   }
