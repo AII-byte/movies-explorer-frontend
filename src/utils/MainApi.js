@@ -125,8 +125,8 @@ class Api {
 }
 
 const MainApi = new Api({
-  // baseUrl: 'https://api.aii.nomoredomains.work',
-  baseUrl: 'http://localhost:3001',
+  baseUrl: 'https://api.aii.nomoredomains.work',
+  // baseUrl: 'http://localhost:3001',
   header: {
     'Content-Type': 'application/json'
   }
