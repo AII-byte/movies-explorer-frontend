@@ -18,11 +18,11 @@ class Api {
   register = (name, email, password) => {
     return fetch(`${this._baseUrl}/signup`, {
       method: 'POST',
+      credentials:'include',
       headers: {
         Accept:'application/json',
         'Content-Type': 'application/json',
-
-    },
+      },
       body: JSON.stringify({ name, email, password })
     })
     .then(res => this._getResponseData(res))
@@ -31,6 +31,7 @@ class Api {
   login = (email, password) => {
     return fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
+      credentials:'include',
       headers: {
         Accept:'application/json',
         'Content-Type': 'application/json',
@@ -43,6 +44,7 @@ class Api {
   getUser = (token) => {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
+      credentials:'include',
       headers: {
         Accept:'application/json',
         'Content-Type': 'application/json',
@@ -56,6 +58,7 @@ class Api {
     const token = localStorage.getItem('jwt');
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
+      credentials:'include',
       headers: {
         Accept:'application/json',
         'Content-Type': 'application/json',
@@ -70,6 +73,7 @@ class Api {
     const token = localStorage.getItem('jwt');
     return fetch(`${this._baseUrl}/movies`, {
       method: 'POST',
+      credentials:'include',
       headers: {
         Accept:'application/json',
         'Content-Type': 'application/json',
@@ -96,6 +100,7 @@ class Api {
     const token = localStorage.getItem('jwt');
     return fetch (`${this._baseUrl}/movies/${movieId}`, {
       method: 'DELETE',
+      credentials:'include',
       headers: {
         Accept:'application/json',
         'Content-Type': 'application/json',
@@ -109,6 +114,7 @@ class Api {
     const token = localStorage.getItem("jwt");
     return fetch(`${this._baseUrl}/movies`, {
         method: "GET",
+        credentials:'include',
         headers: {
             Accept:"application/json",
             "Content-Type": "application/json",
