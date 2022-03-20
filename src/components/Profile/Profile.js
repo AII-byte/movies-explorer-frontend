@@ -55,7 +55,7 @@ function Profile({loggedIn, responseMessage, onEditProfile, onLogOut, isLoading}
               required
             />
           </div>
-          <span className="section error error__input" id="user-name-error">{errors.name || ''}</span>
+          <span className="section error error__input error__name" id="user-name-error">{errors.name || ''}</span>
           <div className="profile__input-line">
             <label className="profile__input-label">E-mail</label>
             <input
@@ -69,9 +69,9 @@ function Profile({loggedIn, responseMessage, onEditProfile, onLogOut, isLoading}
               pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[a-z]{2,})\b"
             />
           </div>
-          <span className="section error error__input" id="user-name-error">{errors.email || ''}</span>
+          <span className="section error error__input error__email" id="user-name-error">{errors.email || ''}</span>
+          <span className="section error error__form">{responseMessage}</span>
         </fieldset>
-        <span className="section error error__form">{responseMessage}</span>
         <div className="form__buttons">
           <button
             type="submit"

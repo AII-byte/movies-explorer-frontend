@@ -1,5 +1,5 @@
 .error{
-  display: block;
+  display: flex;
   color: #FF3055;
 }
 
@@ -11,16 +11,25 @@
   font-size: 10px;
   line-height: 12px;
   font-weight: 400;
-  margin-bottom: 2px;
   max-width: 240px;
-  min-height: 12px;
+}
+
+.error__name{
+  min-height: 24px;
+}
+
+.error__email{
+  min-height: 36px;
+}
+
+.error__password{
+  min-height: 36px;
 }
 
 .error__form{
-  font-size: 15px;
+  font-size: 10px;
   line-height: 18px;
   font-weight: 400;
-  margin-bottom: 2px;
   max-width: 240px;
 }
 

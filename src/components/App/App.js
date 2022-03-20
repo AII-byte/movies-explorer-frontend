@@ -30,7 +30,6 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   const [moviesSearchResponse, setMoviesSearchResponse] = useState("");
   const [savedMoviesSearchResponse, setSavedMoviesSearchResponse] = useState("");
-  const [errorState, setErrorState] = useState(false);
 
   const history = useHistory();
 
@@ -74,13 +73,13 @@ function App() {
           .catch((err) => {
             console.log(err);
               if (err === "400") {
-                  showResMessage(messages.userIncorrectUpdateInfo);
+                  showResMessage(messages.userCreateIncorrectData);
               }
               if (err === "409") {
                   showResMessage(messages.userEmailConflict);
               }
               if (err === "500") {
-                  showResMessage(messages.userIncorrectUpdateInfo);
+                  showResMessage(messages.moviesServerError);
               }
           });
   }
@@ -97,13 +96,13 @@ function App() {
       .catch((err) => {
         console.log(`Ошибка ${err}`)
           if (err === "400") {
-            showResMessage(messages.userIncorrectUpdateInfo);
+            showResMessage(messages.userLoginIncorrectData);
           }
           if (err === "401") {
-            showResMessage(messages.userIncorrectUpdateInfo);
+            showResMessage(messages.userLoginError);
           }
           if (err === "500") {
-            showResMessage(messages.userIncorrectUpdateInfo);
+            showResMessage(messages.moviesServerError);
           }
       });
   }
@@ -221,7 +220,6 @@ function addMovie(movie) {
             setSavedMovies([...savedMovies, newSavedMovie]);
             console.log(`addMovie ${res.message}`);
         })
-        setErrorState(true)
         .catch((err) => console.log(err));
 }
 
@@ -347,7 +345,6 @@ function toggleMovieLike(movie, isLiked) {
             toggleSubmit={toggleSubmit}
             isSubmitted={isSubmitted}
             unToggleSubmit={unToggleSubmit}
-            errorState={errorState}
           />
 
           <ProtectedRoute

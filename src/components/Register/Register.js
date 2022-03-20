@@ -38,7 +38,7 @@ function Register({ onRegister, responseMessage, isLoading }) {
             minLength={2}
             maxLength={30}
           />
-          <span className="section error error__input" id="user-name-error">{errors.name || ''}</span>
+          <span className="section error error__input error__name" id="user-name-error">{errors.name || ''}</span>
           <label className="form__label form__label-style">E-mail</label>
           <input
             className="form__input form__user-email"
@@ -51,7 +51,7 @@ function Register({ onRegister, responseMessage, isLoading }) {
             onChange={handleChange}
             pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[a-z]{2,})\b"
           />
-          <span className="section error error__input" id="user-email-error">{errors.email || ''}</span>
+          <span className="section error error__input error__email" id="user-email-error">{errors.email || ''}</span>
           <label className="form__label form__label-style">Пароль</label>
           <input
             className="form__input form__user-password"
@@ -65,8 +65,8 @@ function Register({ onRegister, responseMessage, isLoading }) {
             minLength={8}
             />
           <span className="section error error__input" id="user-password-error">{errors.password || ''}</span>
+          <span className="error section error__form">{responseMessage}</span>
         </fieldset>
-        <span className="error section error__form">{responseMessage}</span>
         <div className="form__buttons">
           <button
             className={`button button__register button__text ${

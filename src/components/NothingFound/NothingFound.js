@@ -1,13 +1,9 @@
 import React from 'react'
 
-function NothingFound({ errorState, message}) {
+function NothingFound({ message }) {
 
   return(
-    <p className="nothing-found">{`${
-      errorState
-        ? 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
-        : message
-    }`}</p>
+    <p className="nothing-found">{`${ message }`}</p>
   )
 }
 

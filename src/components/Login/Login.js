@@ -36,7 +36,7 @@ function Login({ onLogin, responseMessage, isLoading }) {
             onChange={handleChange}
             pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[a-z]{2,})\b"
           />
-          <span className="section error error__input" id="user-email-error">{errors.email || ''}</span>
+          <span className="section error error__input error__email" id="user-email-error">{errors.email || ''}</span>
 
           <label className="form__label form__label-style" htmlFor="password">Пароль</label>
           <input
@@ -51,9 +51,9 @@ function Login({ onLogin, responseMessage, isLoading }) {
             minLength={5}
           />
           <span className="section error error__input" id="user-password-error">{errors.password || ''}</span>
-
+          <span className="section error error__form">{responseMessage}</span>
         </fieldset>
-        <span className="section error error__form">{responseMessage}</span>
+
         <div className="form__buttons">
           <button
             className={`button button__login button__text ${

@@ -17,7 +17,6 @@ function SavedMovies({
   toggleSubmit,
   isSubmitted,
   unToggleSubmit,
-  errorState
  }) {
   const [shortMovies, setShortMovies] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
@@ -40,10 +39,23 @@ function SavedMovies({
       toggleSubmit={toggleSubmit}
       unToggleSubmit={unToggleSubmit}
     />
+    {isChecked &&
+    movies.length !== 0 &&
+    shortMovies.length === 0 && (
+      <NothingFound
+        message={messages.movieNotShortFilm}
+      />
+    )}
+    {!isSubmitted && movies.length === 0 ? (
+      <NothingFound
+        message={messages.movieNotSaved}
+      />
+      ): (
+      ''
+    )}
     {!movies || movies.length === 0 ? (
       <NothingFound
         message={messages.movieNotSaved}
-        errorState={errorState}
       />
       ) : (
       <MoviesCardList

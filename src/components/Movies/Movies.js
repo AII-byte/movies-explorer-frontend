@@ -18,7 +18,6 @@ function Movies({
   toggleSubmit,
   isSubmitted,
   unToggleSubmit,
-  errorState
 }) {
 
     const [shortMovies, setShortMovies] = useState([]);
@@ -49,7 +48,6 @@ function Movies({
           ? movies.length === 0 && (
             <NothingFound
               message={messages.movieServerNothingFound}
-              errorState={errorState}
             />
           ) : ""
         }
@@ -58,7 +56,6 @@ function Movies({
           shortMovies.length === 0 && (
             <NothingFound
               message={messages.movieNotShortFilm}
-              errorState={errorState}
             />
         )}
         {movies.length !== 0 && (
