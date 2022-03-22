@@ -17,6 +17,7 @@ import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 
 import messages from '../../utils/messages';
+import { DURATION_SHORT_MOVIE } from '../../utils/constants';
 
 
 function App() {
@@ -196,7 +197,7 @@ function search(data, keyword) {
 
 function sortShortMovies(movies) {
     const shortMoviesArray = movies.filter(
-        (movie) => movie.duration <= 40
+        (movie) => movie.duration <= DURATION_SHORT_MOVIE
     );
     return shortMoviesArray;
 }

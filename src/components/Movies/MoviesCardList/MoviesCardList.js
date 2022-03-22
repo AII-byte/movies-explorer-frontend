@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import MoviesCard from '../MoviesCard/MoviesCard'
+import MoviesCard from '../MoviesCard/MoviesCard';
+import {
+  WINDOW_WIDHT_PX,
+  NUMBER_OF_CARD_UPTO_760px,
+  MORE_BTN_NUMBER_OF_CARD_UPTO_760px,
+  NUMBER_OF_CARD_AFTER_760px,
+  MORE_BTN_NUMBER_OF_CARD_AFTER_760PX,
+} from '../../../utils/constants';
 
 function MoviesCardList({ movies, toggleMovieLike, checkLikeStatus }) {
 
@@ -27,12 +34,12 @@ function MoviesCardList({ movies, toggleMovieLike, checkLikeStatus }) {
 
   useEffect(() => {
     if (location === '/movies') {
-      if (windowWidth <= 760) {
-        renderExtraPortion(5);
-        setMoreAmountToRender(5);
-      } else if (windowWidth > 760){
-        renderExtraPortion(8);
-        setMoreAmountToRender(8);
+      if (windowWidth <= WINDOW_WIDHT_PX) {
+        renderExtraPortion(NUMBER_OF_CARD_UPTO_760px);
+        setMoreAmountToRender(MORE_BTN_NUMBER_OF_CARD_UPTO_760px);
+      } else if (windowWidth > WINDOW_WIDHT_PX){
+        renderExtraPortion(NUMBER_OF_CARD_AFTER_760px);
+        setMoreAmountToRender(MORE_BTN_NUMBER_OF_CARD_AFTER_760PX);
       }
     } else {
       renderExtraPortion(movies.length);
