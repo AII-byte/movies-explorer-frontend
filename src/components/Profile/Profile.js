@@ -70,7 +70,14 @@ function Profile({loggedIn, responseMessage, onEditProfile, onLogOut, isLoading}
             />
           </div>
           <span className="section error error__input error__email" id="user-name-error">{errors.email || ''}</span>
-          <span className="section error error__form">{responseMessage}</span>
+          <span className={`section error error__form ${
+            responseMessage.err
+              ? ''
+              : 'error__success'
+            }`}
+          >
+            {responseMessage.text}
+          </span>
         </fieldset>
         <div className="form__buttons">
           <button
@@ -84,7 +91,7 @@ function Profile({loggedIn, responseMessage, onEditProfile, onLogOut, isLoading}
             onClick={handleOnSubmit}
             disabled={!isValid && !isValuesNotMatched && !isLoading}
           >
-          {isLoading ? 'Сохранение....' : 'Редактировать'}
+            {isLoading ? 'Сохранение....' : 'Редактировать'}
           </button>
           <button
             type="button"

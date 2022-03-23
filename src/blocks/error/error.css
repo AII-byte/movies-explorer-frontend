@@ -3,6 +3,10 @@
   color: #FF3055;
 }
 
+.error__success{
+  color: #008000;
+}
+
 .error:last-of-type{
   margin-bottom: 0;
 }

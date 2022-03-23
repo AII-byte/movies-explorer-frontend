@@ -111,18 +111,22 @@ function App() {
   function handleUpdateUser(name, email) {
     mainApi.editUserBio(name, email)
       .then(res => {
+        console.log("updatedUser", res)
         setCurrentUser(res);
+        showResMessage({ text: messages.userDataUpdateSuccess, err: false });
       })
-    // .catch(err => console.log(err))
-          .catch((err) => {
-            console.log(err);
-            if (err === "400") {
-              showResMessage(messages.userIncorrectUpdateInfo);
-            }
-            if (err === ("409")) {
-              showResMessage(messages.userEmailConflict);
-            }
-          });
+      .catch((err) => {
+        console.log(`Ошибка обновления юзера ${err}`);
+        if (err === '400') {
+          showResMessage(messages.userIncorrectUpdateInfo);
+        }
+        if (err === '409') {
+          showResMessage({ text: messages.userEmailConflict, err: true });
+        }
+        if (err === '500') {
+          showResMessage(messages.serverError);
+        }
+      });
   }
 
   function handleLogOut() {
