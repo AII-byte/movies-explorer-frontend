@@ -227,7 +227,12 @@ function addMovie(movie) {
             setSavedMovies([...savedMovies, newSavedMovie]);
             console.log(`addMovie ${res.message}`);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(`Ошибка ${err}`)
+            if (err === "400") {
+              showResMessage(messages.movieCreationIncorrectData);
+            }
+        });
 }
 
 function removeMovies(movie) {
@@ -239,7 +244,12 @@ function removeMovies(movie) {
             getFavoriteMovies();
             console.log(res.message);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(`Ошибка ${err}`)
+            if (err === "400") {
+              showResMessage(messages.movieDeleteIncorrectData);
+            }
+        });
 }
 
 function checkLikeStatus(movie) {

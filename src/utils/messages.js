@@ -2,7 +2,7 @@ module.exports = {
   authorizationError: 'Авторизация не прошла',
   movieCannotFoundViaId: 'Фильм с указанным ID не найден',
   movieIncorrectData: 'Переданы некорректные данные при запросе фильма',
-  movieCreationIncorrectData: 'Переданы некорректные данные при создании фильма',
+  movieCreationIncorrectData: 'Переданы некорректные данные при сохраненении фильма',
   movieIdConflict: 'Фильм с указанным movieId уже существует',
   movieProhibitedDelete: 'Вы не можете удалять чужие фильмы',
   movieDeleteIncorrectData: 'Переданы некорректные данные при удалении фильма',
