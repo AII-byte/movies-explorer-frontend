@@ -22,13 +22,11 @@ function MoviesCardList({ movies, toggleMovieLike, checkLikeStatus }) {
     if (resizeTimeout) {
       clearTimeout(resizeTimeout);
     }
-
     resizeTimeout = setTimeout(() => setWindowWidth(document.documentElement.clientWidth), 2000);
   };
 
   useEffect(() => {
     window.addEventListener('resize', updateWindowWidth);
-
     return () => window.removeEventListener('resize', updateWindowWidth);
   });
 
@@ -43,7 +41,6 @@ function MoviesCardList({ movies, toggleMovieLike, checkLikeStatus }) {
       }
     } else {
       renderExtraPortion(movies.length);
-      console.log(movies.length)
     }
   }, [windowWidth, location, movies.length]);
 

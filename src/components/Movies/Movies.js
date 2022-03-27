@@ -23,28 +23,11 @@ function Movies({
     const [shortMovies, setShortMovies] = useState([]);
     const [isChecked, setIsChecked] = useState(false);
 
-    const [keyword, setKeyword] = useState('');
-    const location = window.location.pathname;
-
     useEffect(() => {
         if (isChecked) {
             setShortMovies(sortShortMovies(movies));
         }
-        // if(location==='/movies') {
-        //   localStorage.setItem('durationStatus', JSON.stringify(isChecked));
-        // }
-        if (location==="/movies") {
-            setKeyword(localStorage.getItem('searchRequest'))
-        }
-    }, [isChecked, keyword]);
-
-
-      // useEffect(() => {
-  //   if(location==="/movies") {
-  //     setKeyword(JSON.parse(localStorage.getItem('searchRequest')))
-  //   }
-  // }, [keyword])
-
+    }, [isChecked]);
 
   return (
     <div className="main section">

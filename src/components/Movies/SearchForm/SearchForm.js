@@ -9,9 +9,9 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 function SearchForm({ handleSearch, setPreloader, setIsChecked, isLoading, toggleSubmit, isSubmitted, unToggleSubmit }) {
 
   const location = window.location.pathname;
-  const { values, handleChange } =  useFormValidation({});
+  const { handleChange } =  useFormValidation({});
 
-  const [keyword, setKeyword] = useState(values.keyword);
+  const [keyword, setKeyword] = useState();
   const [isShortMovies, setIsShortMovies] = useState(false);
 
 
@@ -28,24 +28,24 @@ function handleKeyword(evt) {
   function handleSubmit(event) {
     event.preventDefault();
     if (keyword === "") {
-        console.log(keyword)
         toggleSubmit()
       } else {
         handleSearch(keyword);
+        setKeyword(keyword);
         setPreloader(true);
+        console.log(keyword)
         unToggleSubmit()
     }
   }
 
-  // const searchRequestText = localStorage.getItem('searchRequest')? JSON.parse(localStorage.getItem('searchRequest')) : [];
-
   useEffect(() => {
-    if(location==="/movies") {
-      // setKeyword(localStorage.getItem('searchRequest')? JSON.parse(localStorage.getItem('searchRequest')) : [])
-      // setKeyword(localStorage.getItem('searchRequest'))
-      setKeyword(keyword)
+    if(location==="/movies"){
+      setKeyword(JSON.parse(localStorage.getItem("searchRequest")))
     }
-  }, [keyword])
+    if(location==="/movies" && localStorage.getItem("durationStatus")){
+      setIsChecked(JSON.parse(localStorage.getItem("durationStatus")))
+    }
+  }, [location, setKeyword, setIsChecked])
 
   return (
     <>
@@ -56,7 +56,7 @@ function handleKeyword(evt) {
         type="search"
         placeholder="Фильм"
         name="keyword"
-        defaultValue={values.keyword}
+        value={keyword || ''}
         onChange={handleKeyword}
         autoComplete="off"
         maxLength="300"

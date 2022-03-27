@@ -175,6 +175,7 @@ function getFavoriteMovies() {
     mainApi.getUserMovies()
         .then((favouriteMovies) => {
             setSavedMovies(favouriteMovies);
+            localStorage.setItem('savedMovies', JSON.stringify(favouriteMovies));
         })
         .catch((error) => {
             setMoviesSearchResponse(messages.moviesServerError);
@@ -217,7 +218,8 @@ function submitSearch(keyword) {
 
 function submitFavoriteSearch(keyword) {
     setTimeout(() => setIsLoading(false), 2000);
-    setSavedMovies(search(savedMovies, keyword));
+    const findMovies = JSON.parse(localStorage.getItem('savedMovies'));
+    setSavedMovies(search(findMovies, keyword));
 }
 
 function addMovie(movie) {
@@ -225,6 +227,7 @@ function addMovie(movie) {
         .then((res) => {
             const newSavedMovie = res;
             setSavedMovies([...savedMovies, newSavedMovie]);
+            localStorage.setItem('savedMovies', JSON.stringify([...savedMovies, res]));
             console.log(`addMovie ${res.message}`);
         })
         .catch((err) => {
@@ -242,6 +245,7 @@ function removeMovies(movie) {
     mainApi.deleteMovie(movieId)
         .then((res) => {
             getFavoriteMovies();
+            localStorage.setItem('savedMovies', JSON.stringify(getFavoriteMovies));
             console.log(res.message);
         })
         .catch((err) => {
@@ -294,17 +298,8 @@ function toggleMovieLike(movie, isLiked) {
     }
   }, [loggedIn]);
 
-//   function getUserDataFromLocal() {
-// //     setSavedMovies(JSON.parse(localStorage.getItem('savedMovies')));
-// //     setLikedMovies(JSON.parse(localStorage.getItem('filteredLikedMovies')));
-// //     setMainMovies(JSON.parse(localStorage.getItem('mainMovies')));
-//         setKeyword(JSON.parse(localStorage.getItem('searchRequest')));
-// //     localStorage.setItem('toggleState', JSON.stringify(false));
-// }
-
   useEffect(() => {
       tokenCheck();
-      // getUserDataFromLocal();
   }, []);
 
 

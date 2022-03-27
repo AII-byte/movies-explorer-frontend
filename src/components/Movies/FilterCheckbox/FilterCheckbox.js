@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 function FilterCheckbox({ onCheckboxToggle }) {
 
   const [isChecked, setChecked] = useState(false);
+  const location = window.location.pathname;
 
   function onChange(event) {
       onCheckboxToggle(!isChecked);
@@ -10,11 +11,11 @@ function FilterCheckbox({ onCheckboxToggle }) {
       localStorage.setItem('durationStatus', JSON.stringify(!isChecked));
   }
 
-  // useEffect(() => {
-  //   if(location==="/movies" && JSON.parse(localStorage.getItem("durationStatus"))) {
-  //     setChecked(checkboxIsChecked)
-  //   }
-  // }, [checkboxIsChecked])
+  useEffect(() => {
+    if(location==="/movies" && localStorage.getItem("durationStatus")) {
+      setChecked(JSON.parse(localStorage.getItem("durationStatus")))
+    }
+  }, [location])
 
   return(
     <div className="filter-checkbox">

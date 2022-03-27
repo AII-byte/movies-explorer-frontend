@@ -12,7 +12,7 @@ class Api {
   }
 
   getData() {
-    return Promise.all([this.getUserData(), this.getSavedMovies()])
+    return Promise.all([this.getUser(), this.getUserMovies()])
   }
 
   register = (name, email, password) => {
