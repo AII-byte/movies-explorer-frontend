@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../../blocks/button/button.css';
 import './SearchForm.css';
 import searchIcon_2 from '../../../images/searchIcon_2.svg';
@@ -8,10 +8,11 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm({ handleSearch, setPreloader, setIsChecked, isLoading, toggleSubmit, isSubmitted, unToggleSubmit }) {
 
+  const location = window.location.pathname;
   const { values, handleChange } =  useFormValidation({});
 
-const [keyword, setKeyword] = useState("");
-const [isShortMovies, setIsShortMovies] = useState(false);
+  const [keyword, setKeyword] = useState(values.keyword);
+  const [isShortMovies, setIsShortMovies] = useState(false);
 
 
 function onCheckboxToggle(checked) {
@@ -24,21 +25,27 @@ function handleKeyword(evt) {
   setKeyword(evt.target.value);
 }
 
-function handleSubmit(event) {
-  event.preventDefault();
-  if (keyword === "") {
-      console.log(keyword)
-
-      toggleSubmit()
-    } else {
-      handleSearch(keyword);
-      setPreloader(true);
-
-      unToggleSubmit()
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (keyword === "") {
+        console.log(keyword)
+        toggleSubmit()
+      } else {
+        handleSearch(keyword);
+        setPreloader(true);
+        unToggleSubmit()
+    }
   }
 
-    }
+  // const searchRequestText = localStorage.getItem('searchRequest')? JSON.parse(localStorage.getItem('searchRequest')) : [];
 
+  useEffect(() => {
+    if(location==="/movies") {
+      // setKeyword(localStorage.getItem('searchRequest')? JSON.parse(localStorage.getItem('searchRequest')) : [])
+      // setKeyword(localStorage.getItem('searchRequest'))
+      setKeyword(keyword)
+    }
+  }, [keyword])
 
   return (
     <>
@@ -49,7 +56,7 @@ function handleSubmit(event) {
         type="search"
         placeholder="Фильм"
         name="keyword"
-        value={values.keyword || ''}
+        defaultValue={values.keyword}
         onChange={handleKeyword}
         autoComplete="off"
         maxLength="300"

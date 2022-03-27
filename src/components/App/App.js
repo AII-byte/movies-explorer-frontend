@@ -199,18 +199,20 @@ function search(data, keyword) {
     return result;
 }
 
-function sortShortMovies(movies) {
+  function sortShortMovies(movies) {
     const shortMoviesArray = movies.filter(
-        (movie) => movie.duration <= DURATION_SHORT_MOVIE
+      (movie) => movie.duration <= DURATION_SHORT_MOVIE
     );
-    return shortMoviesArray;
-}
+    // localStorage.setItem('searchResult', JSON.stringify(shortMoviesArray));
+    return shortMoviesArray
+  }
 
 function submitSearch(keyword) {
-    getBeatMovies();
+    // getBeatMovies();
     setTimeout(() => setIsLoading(false), 1000);
     setSearchMoviesResult(search(allMovies, keyword));
-    localStorage.setItem("searchResult", JSON.stringify(search(allMovies, keyword)));
+    localStorage.setItem('searchResult', JSON.stringify(search(allMovies, keyword)));
+    localStorage.setItem('searchRequest', JSON.stringify(keyword));
 }
 
 function submitFavoriteSearch(keyword) {
@@ -282,8 +284,17 @@ function toggleMovieLike(movie, isLiked) {
     }
   }, [loggedIn]);
 
+//   function getUserDataFromLocal() {
+// //     setSavedMovies(JSON.parse(localStorage.getItem('savedMovies')));
+// //     setLikedMovies(JSON.parse(localStorage.getItem('filteredLikedMovies')));
+// //     setMainMovies(JSON.parse(localStorage.getItem('mainMovies')));
+//         setKeyword(JSON.parse(localStorage.getItem('searchRequest')));
+// //     localStorage.setItem('toggleState', JSON.stringify(false));
+// }
+
   useEffect(() => {
       tokenCheck();
+      // getUserDataFromLocal();
   }, []);
 
 

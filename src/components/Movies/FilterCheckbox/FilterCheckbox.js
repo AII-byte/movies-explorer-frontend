@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function FilterCheckbox({ onCheckboxToggle }) {
 
@@ -7,7 +7,14 @@ function FilterCheckbox({ onCheckboxToggle }) {
   function onChange(event) {
       onCheckboxToggle(!isChecked);
       setChecked(event.target.checked);
+      localStorage.setItem('durationStatus', JSON.stringify(!isChecked));
   }
+
+  // useEffect(() => {
+  //   if(location==="/movies" && JSON.parse(localStorage.getItem("durationStatus"))) {
+  //     setChecked(checkboxIsChecked)
+  //   }
+  // }, [checkboxIsChecked])
 
   return(
     <div className="filter-checkbox">
