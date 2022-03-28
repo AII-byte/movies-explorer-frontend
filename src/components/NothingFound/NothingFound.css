@@ -1,12 +1,17 @@
 .nothing-found{
   display: flex;
-  justify-content: baseline;
+  flex-direction: column;
+  /* justify-content: baseline; */
   align-items: center;
+  /* margin: 10vh auto 0 auto; */
   margin: 0 auto;
+  padding-top: 10vh;
   font-size: 12px;
   line-height: 15px;
   font-weight: 400;
-  min-height: 562px;
+  /* min-height: 562px; */
+  min-height: 50vh;
+  box-sizing: border-box;
 }
 
 @media screen and (min-width: 768px){

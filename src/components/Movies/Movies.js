@@ -18,6 +18,7 @@ function Movies({
   toggleSubmit,
   isSubmitted,
   unToggleSubmit,
+  handleMovieLike
 }) {
 
     const [shortMovies, setShortMovies] = useState([]);
@@ -40,31 +41,36 @@ function Movies({
         toggleSubmit={toggleSubmit}
         unToggleSubmit={unToggleSubmit}
       />
-      <>
-        {isLoading && <Preloader />}
-
-        {moviesSearchResponse
-          ? movies.length === 0 && (
-            <NothingFound
-              message={messages.movieServerNothingFound}
+      <div>
+        {isLoading ?
+          (<Preloader />) :
+        (
+        <>
+          {moviesSearchResponse
+            ? movies.length === 0 && (
+              <NothingFound
+                message={messages.movieServerNothingFound}
+              />
+            ) : ""
+          }
+          {isChecked &&
+            movies.length !== 0 &&
+            shortMovies.length === 0 && (
+              <NothingFound
+                message={messages.movieNotShortFilm}
+              />
+          )}
+          {movies.length !== 0 && (
+            <MoviesCardList
+              movies={isChecked ? shortMovies : movies}
+              toggleMovieLike={toggleMovieLike}
+              checkLikeStatus={checkLikeStatus}
             />
-          ) : ""
+          )}
+        </>
+        )
         }
-        {isChecked &&
-          movies.length !== 0 &&
-          shortMovies.length === 0 && (
-            <NothingFound
-              message={messages.movieNotShortFilm}
-            />
-        )}
-        {movies.length !== 0 && (
-          <MoviesCardList
-            movies={isChecked ? shortMovies : movies}
-            toggleMovieLike={toggleMovieLike}
-            checkLikeStatus={checkLikeStatus}
-          />
-        )}
-      </>
+      </div>
     </div>
   );
 }

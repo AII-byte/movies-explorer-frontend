@@ -121,8 +121,8 @@ class Api {
             Authorization: `Bearer ${token}`,
         },
     }).then(res => this._getResponseData(res));
+  }
 };
-}
 
 const MainApi = new Api({
   // baseUrl: 'https://api.aii.nomoredomains.work',

@@ -142,7 +142,7 @@ function App() {
   }
 
   function getBeatMovies() {
-    setIsLoading(true);
+    // setIsLoading(true);
     moviesApi.getFilms()
         .then((data) => {
             const moviesArray = data.map((item) => {
@@ -166,24 +166,24 @@ function App() {
             setMoviesSearchResponse(messages.moviesServerError);
             console.log(err);
         })
-        .finally(() => {
-            setIsLoading(false);
-        });
+        // .finally(() => {
+        //     setIsLoading(false);
+        // });
 }
 
-function getFavoriteMovies() {
+  function getFavoriteMovies() {
     mainApi.getUserMovies()
-        .then((favouriteMovies) => {
-            setSavedMovies(favouriteMovies);
-            localStorage.setItem('savedMovies', JSON.stringify(favouriteMovies));
-        })
-        .catch((error) => {
-            setMoviesSearchResponse(messages.moviesServerError);
-            console.log(error);
-        });
-}
+      .then((favouriteMovies) => {
+        setSavedMovies(favouriteMovies);
+        localStorage.setItem('savedMovies', JSON.stringify(favouriteMovies));
+      })
+      .catch((error) => {
+        setMoviesSearchResponse(messages.moviesServerError);
+        console.log(error);
+      });
+  }
 
-function search(data, keyword) {
+  function search(data, keyword) {
     const result = data.filter((movie) => {
         return (
             movie.nameRU.toLowerCase().includes(keyword.toLowerCase()) ||
@@ -198,7 +198,7 @@ function search(data, keyword) {
         setSavedMoviesSearchResponse(messages.movieNotSaved);
     }
     return result;
-}
+  }
 
   function sortShortMovies(movies) {
     const shortMoviesArray = movies.filter(
@@ -208,61 +208,59 @@ function search(data, keyword) {
     return shortMoviesArray
   }
 
-function submitSearch(keyword) {
+  function submitSearch(keyword) {
     // getBeatMovies();
     setTimeout(() => setIsLoading(false), 1000);
     setSearchMoviesResult(search(allMovies, keyword));
     localStorage.setItem('searchResult', JSON.stringify(search(allMovies, keyword)));
     localStorage.setItem('searchRequest', JSON.stringify(keyword));
-}
+  }
 
-function submitFavoriteSearch(keyword) {
-    setTimeout(() => setIsLoading(false), 2000);
+  function submitFavoriteSearch(keyword) {
+    // setTimeout(() => setIsLoading(false), 2000);
     const findMovies = JSON.parse(localStorage.getItem('savedMovies'));
     setSavedMovies(search(findMovies, keyword));
-}
+    }
 
-function addMovie(movie) {
+  function addMovie(movie) {
     mainApi.createMovie(movie)
-        .then((res) => {
-            const newSavedMovie = res;
-            setSavedMovies([...savedMovies, newSavedMovie]);
-            localStorage.setItem('savedMovies', JSON.stringify([...savedMovies, res]));
-            console.log(`addMovie ${res.message}`);
-        })
-        .catch((err) => {
-          console.log(`Ошибка ${err}`)
-            if (err === "400") {
-              showResMessage(messages.movieCreationIncorrectData);
-            }
-        });
-}
+      .then((res) => {
+        const newSavedMovie = res;
+        setSavedMovies([...savedMovies, newSavedMovie]);
+        localStorage.setItem('savedMovies', JSON.stringify([...savedMovies, res], currentUser));
+        console.log(`addMovie ${res.message}`);
+      })
+      .catch((err) => {
+        console.log(`Ошибка ${err}`)
+        if (err === "400") {
+          showResMessage(messages.movieCreationIncorrectData);
+        }
+      });
+  }
 
-function removeMovies(movie) {
-    const movieId = savedMovies.find(
-        (item) => item.movieId === movie.movieId
-    )._id;
+  function removeMovies(movie) {
+    const movieId = savedMovies.find((item) => item.movieId === movie.movieId)._id;
     mainApi.deleteMovie(movieId)
-        .then((res) => {
-            getFavoriteMovies();
-            localStorage.setItem('savedMovies', JSON.stringify(getFavoriteMovies));
-            console.log(res.message);
-        })
-        .catch((err) => {
-          console.log(`Ошибка ${err}`)
-            if (err === "400") {
-              showResMessage(messages.movieDeleteIncorrectData);
-            }
-        });
-}
+      .then((res) => {
+        getFavoriteMovies();
+        localStorage.setItem('savedMovies', JSON.stringify(getFavoriteMovies), currentUser);
+        console.log(res.message);
+      })
+      .catch((err) => {
+        console.log(`Ошибка ${err}`)
+          if (err === "400") {
+            showResMessage(messages.movieDeleteIncorrectData);
+          }
+      });
+  }
 
-function checkLikeStatus(movie) {
-  return savedMovies.some(savedMovie => savedMovie.movieId === movie.movieId);
-}
+  function checkLikeStatus(movie) {
+    return savedMovies.some(savedMovie => savedMovie.movieId === movie.movieId);
+  }
 
-function toggleMovieLike(movie, isLiked) {
+  function toggleMovieLike(movie, isLiked) {
     isLiked ? removeMovies(movie) : addMovie(movie);
-}
+  }
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");

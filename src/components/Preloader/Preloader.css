@@ -8,7 +8,8 @@
   position: relative;
   width: 80px;
   height: 80px;
-  min-height: 562px;
+  min-height: 50vh;
+  box-sizing: border-box;
 }
 .lds-spinner div {
   transform-origin: 40px 40px;
