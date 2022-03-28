@@ -25,9 +25,9 @@ function Movies({
     const [isChecked, setIsChecked] = useState(false);
 
     useEffect(() => {
-        if (isChecked) {
-            setShortMovies(sortShortMovies(movies));
-        }
+      if (isChecked) {
+        setShortMovies(sortShortMovies(movies));
+      }
     }, [isChecked]);
 
   return (
@@ -43,32 +43,32 @@ function Movies({
       />
       <div>
         {isLoading ?
-          (<Preloader />) :
-        (
-        <>
-          {moviesSearchResponse
-            ? movies.length === 0 && (
-              <NothingFound
-                message={messages.movieServerNothingFound}
-              />
-            ) : ""
-          }
-          {isChecked &&
-            movies.length !== 0 &&
-            shortMovies.length === 0 && (
-              <NothingFound
-                message={messages.movieNotShortFilm}
-              />
-          )}
-          {movies.length !== 0 && (
-            <MoviesCardList
-              movies={isChecked ? shortMovies : movies}
-              toggleMovieLike={toggleMovieLike}
-              checkLikeStatus={checkLikeStatus}
-            />
-          )}
-        </>
-        )
+          ( <Preloader /> ) :
+          (
+            <>
+              {moviesSearchResponse
+                ? movies.length === 0 && (
+                  <NothingFound
+                    message={messages.movieServerNothingFound}
+                  />
+                ) : ""
+              }
+              {isChecked &&
+                movies.length !== 0 &&
+                shortMovies.length === 0 && (
+                  <NothingFound
+                    message={messages.movieNotShortFilm}
+                  />
+              )}
+              {movies.length !== 0 && (
+                <MoviesCardList
+                  movies={isChecked ? shortMovies : movies}
+                  toggleMovieLike={toggleMovieLike}
+                  checkLikeStatus={checkLikeStatus}
+                />
+              )}
+            </>
+          )
         }
       </div>
     </div>

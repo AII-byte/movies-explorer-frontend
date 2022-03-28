@@ -66,33 +66,33 @@ function App() {
 
   function handleRegister({ name, email, password }) {
     mainApi.register(name, email, password)
-          .then((res) => {
-              if (res) {
-                handleLogin(email, password);
-              }
-          })
-          .catch((err) => {
-            console.log(err);
-              if (err === "400") {
-                  showResMessage(messages.userCreateIncorrectData);
-              }
-              if (err === "409") {
-                  showResMessage(messages.userEmailConflict);
-              }
-              if (err === "500") {
-                  showResMessage(messages.moviesServerError);
-              }
-          });
+      .then((res) => {
+        if (res) {
+          handleLogin(email, password);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+          if (err === "400") {
+            showResMessage(messages.userCreateIncorrectData);
+          }
+          if (err === "409") {
+            showResMessage(messages.userEmailConflict);
+          }
+          if (err === "500") {
+            showResMessage(messages.moviesServerError);
+          }
+      });
   }
 
   function handleLogin(email, password) {
     mainApi.login(email, password)
       .then((res) => {
-          if (res.token) {
-            localStorage.setItem("jwt", res.token);
-            setLoggedIn(true);
-            history.push("/movies");
-          }
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          setLoggedIn(true);
+          history.push("/movies");
+        }
       })
       .catch((err) => {
         console.log(`Ошибка ${err}`)
@@ -130,45 +130,41 @@ function App() {
   }
 
   function handleLogOut() {
-      localStorage.clear();
-      setCurrentUser({});
-      setLoggedIn(false);
-      history.push("/");
+    localStorage.clear();
+    setCurrentUser({});
+    setLoggedIn(false);
+    history.push("/");
   }
 
   function showResMessage(error) {
-      setResponseMessage(error);
-      setTimeout(() => setResponseMessage(""), 8000);
+    setResponseMessage(error);
+    setTimeout(() => setResponseMessage(""), 8000);
   }
 
   function getBeatMovies() {
-    // setIsLoading(true);
     moviesApi.getFilms()
-        .then((data) => {
-            const moviesArray = data.map((item) => {
-                return {
-                    country: item.country || 'none',
-                    director: item.director,
-                    duration: item.duration,
-                    year: item.year,
-                    description: item.description,
-                    image: `https://api.nomoreparties.co${item.image.url}` || '',
-                    trailer: item.trailerLink,
-                    thumbnail: `https://api.nomoreparties.co${item.image.formats.thumbnail.url}` || '',
-                    movieId: item.id,
-                    nameRU: item.nameRU,
-                    nameEN: item.nameEN || item.nameRU,
-                };
-            });
-            localStorage.setItem("movies", JSON.stringify(moviesArray));
-        })
-        .catch((err) => {
-            setMoviesSearchResponse(messages.moviesServerError);
-            console.log(err);
-        })
-        // .finally(() => {
-        //     setIsLoading(false);
-        // });
+      .then((data) => {
+        const moviesArray = data.map((item) => {
+          return {
+            country: item.country || 'none',
+            director: item.director,
+            duration: item.duration,
+            year: item.year,
+            description: item.description,
+            image: `https://api.nomoreparties.co${item.image.url}` || '',
+            trailer: item.trailerLink,
+            thumbnail: `https://api.nomoreparties.co${item.image.formats.thumbnail.url}` || '',
+            movieId: item.id,
+            nameRU: item.nameRU,
+            nameEN: item.nameEN || item.nameRU,
+          };
+        });
+        localStorage.setItem("movies", JSON.stringify(moviesArray));
+      })
+      .catch((err) => {
+        setMoviesSearchResponse(messages.moviesServerError);
+        console.log(err);
+      })
 }
 
   function getFavoriteMovies() {
@@ -185,17 +181,17 @@ function App() {
 
   function search(data, keyword) {
     const result = data.filter((movie) => {
-        return (
-            movie.nameRU.toLowerCase().includes(keyword.toLowerCase()) ||
-            movie.nameEN.toLowerCase().includes(keyword.toLowerCase()) ||
-            movie.description.toLowerCase().includes(keyword.toLowerCase())
-        );
+      return (
+        movie.nameRU.toLowerCase().includes(keyword.toLowerCase()) ||
+        movie.nameEN.toLowerCase().includes(keyword.toLowerCase()) ||
+        movie.description.toLowerCase().includes(keyword.toLowerCase())
+      );
     });
     if (result.length === 0 && location === "/movies") {
-        setMoviesSearchResponse(messages.movieServerNothingFound);
+      setMoviesSearchResponse(messages.movieServerNothingFound);
     }
     if (result.length === 0 && location === "/saved-movies") {
-        setSavedMoviesSearchResponse(messages.movieNotSaved);
+      setSavedMoviesSearchResponse(messages.movieNotSaved);
     }
     return result;
   }
@@ -204,7 +200,6 @@ function App() {
     const shortMoviesArray = movies.filter(
       (movie) => movie.duration <= DURATION_SHORT_MOVIE
     );
-    // localStorage.setItem('searchResult', JSON.stringify(shortMoviesArray));
     return shortMoviesArray
   }
 
@@ -217,7 +212,7 @@ function App() {
   }
 
   function submitFavoriteSearch(keyword) {
-    // setTimeout(() => setIsLoading(false), 2000);
+    setTimeout(() => setIsLoading(false), 2000);
     const findMovies = JSON.parse(localStorage.getItem('savedMovies'));
     setSavedMovies(search(findMovies, keyword));
     }
