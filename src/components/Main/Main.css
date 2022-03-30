@@ -1,0 +1,23 @@
+.main{
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.main__header{
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #000000;
+  margin: 0;
+}
+
+@media screen and (min-width: 768px){
+  .main__header{
+    font-size: 22px;
+    line-height: 27px;
+    padding-bottom: 23px;
+  }
+}

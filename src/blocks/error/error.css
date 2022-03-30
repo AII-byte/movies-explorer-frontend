@@ -1,0 +1,44 @@
+.error{
+  display: flex;
+  color: #FF3055;
+}
+
+.error__success{
+  color: #008000;
+}
+
+.error:last-of-type{
+  margin-bottom: 0;
+}
+
+.error__input{
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 400;
+  max-width: 240px;
+}
+
+.error__name{
+  min-height: 24px;
+}
+
+.error__email{
+  min-height: 36px;
+}
+
+.error__password{
+  min-height: 36px;
+}
+
+.error__form{
+  font-size: 10px;
+  line-height: 18px;
+  font-weight: 400;
+  max-width: 240px;
+}
+
+@media screen and (min-width: 768px){
+  .error{
+    max-width: 396px;
+  }
+}

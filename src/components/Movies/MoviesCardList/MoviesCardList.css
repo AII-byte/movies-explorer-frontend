@@ -1,0 +1,21 @@
+.movies-card-list{
+  padding: 40px 0 0 0;
+  margin: 0 10px;
+  list-style: none;
+  min-height: 50vh;
+}
+
+@media screen and (min-width: 768px){
+  .movies-card-list{
+    padding: 60px 0 0 0;
+    margin: 0 30px;
+  }
+
+}
+
+@media screen and (min-width: 1280px){
+  .movies-card-list{
+    padding: 70px 0 0 0;
+    margin: 0 70px;
+  }
+}

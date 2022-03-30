@@ -1,0 +1,71 @@
+.burger__btn{
+  display: none;
+  z-index: 20;
+}
+
+.burger__container{
+  position: relative;
+  z-index: 20;
+}
+
+.burger__icon{
+  background-color: #000000;
+  display: block;
+  height: 3px;
+  width: 28px;
+  position: relative;
+  transition: background .2s ease-out;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.burger__icon:before,
+.burger__icon:after{
+  background: inherit;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  cursor: pointer;
+  top: 7px;
+}
+
+.burger__icon:before{
+  top: 7px;
+}
+
+.burger__icon:after{
+  top: -7px;
+}
+
+.burger__btn:checked ~ .burger__container .burger__icon{
+  transform: rotate(45deg);
+  background: none;
+}
+
+.burger__btn:checked ~ .burger__container .burger__icon:before{
+  transform: rotate(0);
+  top: 0;
+}
+
+.burger__btn:checked ~ .burger__container .burger__icon:after{
+  transform: rotate(-90deg);
+  top: 0;
+}
+
+.burger__btn:checked ~ .navigation{
+  visibility: visible;
+  display: flex;
+}
+
+@media screen and (min-width: 1280px){
+  .burger{
+    display: flex;
+  }
+
+  .burger__container{
+    display: none;
+  }
+}
