@@ -132,6 +132,10 @@ function App() {
   function handleLogOut() {
     localStorage.clear();
     setCurrentUser({});
+    setAllmovies([]);
+    setSearchMoviesResult([]);
+    setMoviesSearchResponse([]);
+    setSavedMovies([]);
     setLoggedIn(false);
     history.push("/");
   }
